@@ -1,36 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
-
 <h2>Billing</h2>
 
 {% if error %}
 <p style="color:red;">{{ error }}</p>
 {% endif %}
 
-<h3>Generate Bill</h3>
-
 <form method="post">
     {% csrf_token %}
-    <label>Select Table:</label>
+    <label><strong>Select Table</strong></label>
     <select name="table" required>
         {% for table in tables %}
         <option value="{{ table.id }}">
-            Table {{ table.table_number }} ({{ table.status }})
+            Table {{ table.table_number }}
         </option>
         {% endfor %}
     </select>
-    <button type="submit">Generate Bill</button>
+    <button class="btn btn-primary">Generate Bill</button>
 </form>
-
-<hr>
 
 <h3>Existing Bills</h3>
 
 <table>
     <tr>
         <th>Table</th>
-        <th>Subtotal</th>
-        <th>Tax</th>
         <th>Total</th>
         <th>Status</th>
         <th>Action</th>
@@ -38,14 +31,16 @@
 
     {% for bill in bills %}
     <tr>
-        <td>Table {{ bill.table.table_number }}</td>
-        <td>{{ bill.subtotal }}</td>
-        <td>{{ bill.tax }}</td>
-        <td>{{ bill.total }}</td>
-        <td>{{ bill.status }}</td>
+        <td>{{ bill.table.table_number }}</td>
+        <td>₹{{ bill.total }}</td>
+        <td>
+            <span class="badge {{ bill.status }}">{{ bill.status }}</span>
+        </td>
         <td>
             {% if bill.status != "PAID" %}
-            <a href="/billing/pay/{{ bill.id }}/">Mark Paid</a>
+            <a class="btn btn-success" href="/billing/pay/{{ bill.id }}/">
+                Mark Paid
+            </a>
             {% else %}
             Paid
             {% endif %}
