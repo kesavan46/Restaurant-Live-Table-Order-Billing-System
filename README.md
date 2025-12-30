@@ -108,7 +108,7 @@ Business logic is isolated in **service layers**, not views.
 ### 1. Clone Repository
 
 ```bash
-git clone 
+git clone https://github.com/kesavan46/Restaurant-Live-Table-Order-Billing-System.git
 cd restaurant
 ```
 
