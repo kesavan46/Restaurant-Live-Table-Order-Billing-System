@@ -1,12 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-
-<h2>Place Order</h2>
+<h2>Place New Order</h2>
 
 <form method="post">
     {% csrf_token %}
 
-    <label><strong>Select Table:</strong></label>
+    <label><strong>Select Table</strong></label><br>
     <select name="table" required>
         {% for table in tables %}
         <option value="{{ table.id }}">
@@ -15,30 +14,29 @@
         {% endfor %}
     </select>
 
-    <h3>Menu Items</h3>
+    <h3>Menu</h3>
 
     <table>
         <tr>
             <th>Item</th>
             <th>Category</th>
             <th>Price</th>
-            <th>Quantity</th>
+            <th>Qty</th>
         </tr>
-
         {% for item in menu_items %}
         <tr>
             <td>{{ item.name }}</td>
             <td>{{ item.category }}</td>
-            <td>{{ item.price }}</td>
+            <td>₹{{ item.price }}</td>
             <td>
-                <input type="number" name="qty_{{ item.id }}" min="0" value="0">
+                <input type="number" min="0" name="qty_{{ item.id }}" value="0">
             </td>
         </tr>
         {% endfor %}
     </table>
 
     <br>
-    <button type="submit">Place Order</button>
+    <button class="btn btn-primary">Place Order</button>
 </form>
 
 {% endblock %}
