@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant System</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ccc; padding: 8px; }
+        th { background: #f4f4f4; }
+        a { margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Restaurant Live Order System</h1>
+    <nav style="display:flex; justify-content:space-between; align-items:center;">
+    <div>
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/order/">Place Order</a>
+        <a href="/billing/">Billing</a>
+    </div>
+
+    <div>
+        <form action="/logout/" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+</nav>
+
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>

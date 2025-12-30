@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Table Dashboard</h2>
+
+{% for entry in tables_data %}
+<h3>Table {{ entry.table.table_number }} ({{ entry.table.status }})</h3>
+
+<p>Capacity: {{ entry.table.capacity }}</p>
+
+{% if entry.orders %}
+<table>
+    <tr>
+        <th>Order ID</th>
+        <th>Status</th>
+        {% if is_waiter %}
+        <th>Action</th>
+        {% endif %}
+    </tr>
+
+    {% for order in entry.orders %}
+    <tr>
+        <td>{{ order.id }}</td>
+        <td>{{ order.status }}</td>
+        {% if is_waiter %}
+        <td>
+            {% if order.status != "SERVED" %}
+            <a href="/order/served/{{ order.id }}/">
+                Mark Served
+            </a>
+            {% else %}
+            Served
+            {% endif %}
+        </td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No active orders</p>
+{% endif %}
+
+<hr>
+{% endfor %}
+
+{% endblock %}
