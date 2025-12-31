@@ -69,6 +69,25 @@ PENDING_PAYMENT → PAID
 ```
 
 * Table resets to **Available** after payment
+## Test Login Credentials
+
+These credentials are provided for evaluation and testing purposes only.
+
+Waiter
+Username: waiter1 
+Password: kesavan2002 
+
+Cashier
+Username: cashier1 
+Password: kesavan2002 
+
+Manager
+Username: manager1 
+Password: kesavan2002 
+
+Admin (Django Admin)
+Username: kesav 
+Password: kesavan2002 
 
 ### 4. Dashboard
 
